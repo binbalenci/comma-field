@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<link rel="import" href="../vaadin-text-field/vaadin-text-field.html">
+<link rel="import" href="../polymer/polymer.html">
+
+<dom-module id="comma-field">
+  <template>
+    <style>
+      vaadin-text-field {
+        height: 50px;
+      }
+    </style>
+    <vaadin-text-field prevent-invalid-input pattern="[0-9.,]*"  value="{{value}}"><div slot="prefix">$</div> </vaadin-text-field>
+  </template>
+  <script>
+    class CommaField extends Polymer.Element {
+      static get is() {
+        return 'comma-field';
+      }
+
+      static get properties() {
+        return {
+          comma: {
+            type: Boolean,
+            value: false,
+          },
+          value: {
+            type: String,
+          }
+        }
+      }
+
+      static get observers() {
+        return [
+          "_valueChanged(comma, value)"
+        ]
+      }
+
+      _valueChanged(comma, value) {
+        if(comma) {
+          // Remove any comma
+          var num1 = value.replace(/,/gi, "");
+          // Split to 2 parts if there is a dot
+          var parts = num1.split(".");
+          // Add comma to first part
+          parts[0] = parts[0].split(/(?=(?:\d{3})+$)/).join(",");
+          // Join parts again and assign to value
+          this.value = parts.join(".");
+        }
+      }
+    };
+
+    customElements.define(CommaField.is, CommaField)
+  </script>
+</dom-module>

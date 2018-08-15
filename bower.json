@@ -1,0 +1,21 @@
+{
+  "name": "comma-field",
+  "authors": [
+    "Binh Bui <binh@vaadin.com>"
+  ],
+  "description": "vaadin-text-field with the option to format the number with divider",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vaadin-text-field": "^2.0.2",
+    "polymer": "^3.0.5"
+  }
+}
